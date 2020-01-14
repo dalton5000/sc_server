@@ -6,9 +6,21 @@ candidates = [
     "Dalton,8,8;1,2,1,2,1,2,1,2,1,2",
     "Donald,2,2;1,2,1,2,1,2,1,2,1,2",
 ]
+candidates_base = [
+    "Dalton,8,8;1,2,1,2,1,2,1,2,1,2",
+    "Donald,2,2;1,2,1,2,1,2,1,2,1,2",
+]
+
+@app.route("/reset")
+def reset():
+    key = request.args['key']
+    if key == "pls":
+        global candidates
+        candidates = candidates_base
 
 @app.route("/add_candidate")
 def add_candidate():
+    global candidates
     data = request.args['data'].split("-")
     if data[0] == "dlt5k":
         candidate_string = data[1]
@@ -23,7 +35,7 @@ def add_candidate():
 def hello():
     return "Hello from Dalton!"
 
-@app.route("/get_all_candidates")
+@app.route("/get_all")
 def get_candidates():
     return jsonify(candidates)
 
