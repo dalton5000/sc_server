@@ -9,7 +9,7 @@ candidates = [
 
 @app.route("/add_candidate")
 def add_candidate():
-    data = request.args['data'].split("#")
+    data = request.args['data'].split("-")
     print(data)
     return jsonify(data)
     # if data[0] == "dlt5k":
