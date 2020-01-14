@@ -7,7 +7,7 @@ candidates = [
     "Donald,2,2;1,2,1,2,1,2,1,2,1,2",
 ]
 
-@app.route("/")
+@app.route("/add_candidate")
 def add_candidate():
     data = request.args['data'].split("#")
     if data[0] == "dlt5k":
