@@ -10,6 +10,8 @@ candidates = [
 @app.route("/add_candidate")
 def add_candidate():
     data = request.args['data'].split("#")
+    print(data)
+    
     if data[0] == "dlt5k":
         candidate_string = data[1]
 
