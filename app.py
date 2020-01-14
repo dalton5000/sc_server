@@ -11,15 +11,15 @@ candidates = [
 def add_candidate():
     data = request.args['data'].split("#")
     print(data)
-    
-    if data[0] == "dlt5k":
-        candidate_string = data[1]
+    return jsonify(data)
+    # if data[0] == "dlt5k":
+    #     candidate_string = data[1]
 
-        print("added " + candidate_string)
-        candidates.append(candidate_string)
-        return("Thank you")
-    else:
-        return("Fuck off")
+    #     print("added " + candidate_string)
+    #     candidates.append(candidate_string)
+    #     return("Thank you")
+    # else:
+    #     return("Fuck off")
 
 @app.route("/")
 def hello():
