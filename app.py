@@ -6,6 +6,7 @@ def hello():
     return "Hello from Dalton!"
 
 @app.route("/get_set")
+def get_set():
     p_set = get_player_set()
     return p_set
 
