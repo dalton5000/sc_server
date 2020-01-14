@@ -1,13 +1,34 @@
-from flask import Flask
+from flask import Flask, request
 from flask import jsonify
 app = Flask(__name__)
+
+candidates = [
+    "Dalton,8,8;1,2,1,2,1,2,1,2,1,2",
+    "Donald,2,2;1,2,1,2,1,2,1,2,1,2",
+]
+
+@app.route("/")
+def add_candidate():
+    data = request.args['data'].split("#")
+    if data[0] == "dlt5k":
+        candidate_string = data[1]
+
+        print("added " + candidate_string)
+        candidates.append(candidate_string)
+        return("Thank you")
+    else:
+        return("Fuck off")
 
 @app.route("/")
 def hello():
     return "Hello from Dalton!"
 
-@app.route("/get_set")
-def get_set():
+@app.route("/get_all_candidates")
+def get_candidates():
+    return jsonify(candidates)
+
+@app.route("/get_lobby")
+def get_lobby():
     p_set = get_player_set()
     return jsonify(p_set)
 
