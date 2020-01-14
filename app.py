@@ -17,7 +17,9 @@ def reset():
     if key == "pls":
         global candidates
         candidates = candidates_base
-
+        return("Reset OK")
+    else:
+        return("Fuck off")
 @app.route("/add_candidate")
 def add_candidate():
     global candidates
