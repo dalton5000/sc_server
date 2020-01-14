@@ -3,12 +3,16 @@ from flask import jsonify
 app = Flask(__name__)
 
 candidates = [
-    "Dalton,8,8;1,2,1,2,1,2,1,2,1,2",
-    "Donald,2,2;1,2,1,2,1,2,1,2,1,2",
+    "Randy,9,7,1,2,1,2,1,2,1,2,1,2",
+    "Larry,2,2;1,2,1,2,1,2,1,2,1,2",
+    "Zoe,7,4;1,2,1,2,1,2,1,2,1,2",
+    "Linda,4,10;1,2,1,2,1,2,1,2,1,2",
 ]
 candidates_base = [
-    "Dalton,8,8;1,2,1,2,1,2,1,2,1,2",
-    "Donald,2,2;1,2,1,2,1,2,1,2,1,2",
+    "Randy,9,7,1,2,1,2,1,2,1,2,1,2",
+    "Larry,2,2;1,2,1,2,1,2,1,2,1,2",
+    "Zoe,7,4;1,2,1,2,1,2,1,2,1,2",
+    "Linda,4,10;1,2,1,2,1,2,1,2,1,2",
 ]
 
 @app.route("/reset")
@@ -44,7 +48,7 @@ def get_candidates():
 @app.route("/get_lobby")
 def get_lobby():
     p_set = get_player_set()
-    return jsonify(p_set)
+    return jsonify(candidates_base)
 
 if __name__ == "__main__":
     app.run()
