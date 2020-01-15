@@ -108,6 +108,10 @@ def get_lobby():
 
     return jsonify(lobby)
 
+@app.route("/ping")
+def ping():
+    return "pong"
+
 if __name__ == "__main__":
     app.run()
 
