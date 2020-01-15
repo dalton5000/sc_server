@@ -23,6 +23,25 @@ candidates = {
         }
     }
 
+candidates_base = {
+    "Randy": {
+        "body": "9",
+        "head": "7"
+        },
+    "Larry": {
+        "body": "2",
+        "head": "2"
+        },
+    "Zoe": {
+        "body": "7",
+        "head": "4"
+        },
+    "Linda": {
+        "body": "4",
+        "head": "10"
+        }
+    }
+
 answers = {
         "gaming": {
             "Randy": [2,2,1,2,1,2,1,2,1,2],
@@ -44,14 +63,37 @@ answers = {
             "Linda": [3,2,1,2,1,2,1,2,1,2]
         }
     }
+answers_base = {
+        "gaming": {
+            "Randy": [2,2,1,2,1,2,1,2,1,2],
+            "Larry": [3,2,1,2,1,2,1,2,1,2],
+            "Zoe": [3,2,1,2,1,2,1,2,1,2],
+            "Linda": [3,2,1,2,1,2,1,2,1,2]
+        },
+        "godot": {
+            "Randy": [3,2,1,2,1,2,1,2,1,2],
+            "Larry": [3,2,1,2,1,2,1,2,1,2],
+            "Zoe": [3,2,1,2,1,2,1,2,1,2],
+            "Linda": [3,2,1,2,1,2,1,2,1,2]
 
+        },
+        "surprise": {
+            "Randy": [3,2,1,2,1,2,1,2,1,2],
+            "Larry": [3,2,1,2,1,2,1,2,1,2],
+            "Zoe": [3,2,1,2,1,2,1,2,1,2],
+            "Linda": [3,2,1,2,1,2,1,2,1,2]
+        }
+    }
 
 @app.route("/reset")
 def reset():
     key = request.args['key']
     if key == "pls":
         global candidates
-        # candidates = candidates_base
+        global answers
+        candidates = candidates_base
+        answers = answers_base
+        save_all()
         return("Reset OK")
     else:
         return("Fuck off")
@@ -74,7 +116,7 @@ def add_answers():
 
         if not content["name"] in answers[content["category"]]:
             answers[content["category"]][content["name"]] = content["answers"]
-
+        save_all()
         return("OK")
     else:
         return("Fuck off")
@@ -119,16 +161,24 @@ def get_lobby():
 def ping():
     return "pong"
 
-if __name__ == "__main__":
-    app.run()
-
 def load_candidates_from_file():
     with open('candidates.json') as json_file:
         global candidates
         candidates = json.load(json_file)
 
 @app.route("/save")
+def save_all():
+    save_candidates()
+    save_answers()
+    return "ok"
+
 def save_candidates():    
     with open('candidates.json', 'w') as outfile:
         json.dump(candidates, outfile)
-    return "ok"
+
+def save_answers():    
+    with open('answers.json', 'w') as outfile:
+        json.dump(answers, outfile)
+
+if __name__ == "__main__":
+    app.run()
