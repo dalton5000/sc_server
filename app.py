@@ -22,9 +22,10 @@ candidates = {
         "head": "10"
         }
     }
+
 answers = {
         "gaming": {
-            "Randy": [3,2,1,2,1,2,1,2,1,2],
+            "Randy": [2,2,1,2,1,2,1,2,1,2],
             "Larry": [3,2,1,2,1,2,1,2,1,2],
             "Zoe": [3,2,1,2,1,2,1,2,1,2],
             "Linda": [3,2,1,2,1,2,1,2,1,2]
@@ -82,13 +83,18 @@ def add_answers():
 def is_unique():
     global candidates
     name_to_check = request.args['name']
-
+    unique = name_to_check in candidates
+    return unique
 
 @app.route("/")
 def hello():
     return "Hello from Dalton!"
 
-@app.route("/get_all")
+@app.route("/get_answers")
+def get_answers():
+    return jsonify(answers)
+
+@app.route("/get_candidates")
 def get_candidates():
     return jsonify(candidates)
 
@@ -115,4 +121,3 @@ def ping():
 
 if __name__ == "__main__":
     app.run()
-
