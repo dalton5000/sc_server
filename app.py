@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask import jsonify
-import random
+import random, json
 
 app = Flask(__name__)
 
@@ -121,3 +121,13 @@ def ping():
 
 if __name__ == "__main__":
     app.run()
+
+def load_candidates_from_file():
+    with open('candidates.json') as json_file:
+        global candidates
+        candidates = json.load(json_file)
+
+@app.route("/save")
+def save_candidates():    
+    with open('candidates.json', 'w') as outfile:
+        json.dump(candidates, outfile)
