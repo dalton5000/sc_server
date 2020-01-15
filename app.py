@@ -131,3 +131,4 @@ def load_candidates_from_file():
 def save_candidates():    
     with open('candidates.json', 'w') as outfile:
         json.dump(candidates, outfile)
+    return "ok"
