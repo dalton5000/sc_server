@@ -94,7 +94,7 @@ def get_candidates():
 
 @app.route("/get_lobbies")
 def get_lobby():
-    lobbies = {"lobbies": []}
+    lobbies = {"lobbies": {}}
     for category in ["gaming", "godot", "surprise"]:
         lobbies["lobbies"][category] = []
         sampling = random.choices(list(answers[category]), k=4)
