@@ -95,7 +95,7 @@ def get_candidates():
 @app.route("/get_lobby")
 def get_lobby():
     category = request.args["category"]
-    sampling = random.choices(answers[category], k=4)
+    sampling = random.choices(answers[category], k=3)
     lobby = []
 
     return jsonify(sampling)
