@@ -96,7 +96,7 @@ def get_candidates():
 def get_lobby():
     category = request.args["category"]
     sampling = random.choices(list(answers[category]), k=4)
-    lobby = []
+    lobby = {"candidates": []}
     for k in sampling:
         candidate = {
             "name": k,
@@ -104,7 +104,7 @@ def get_lobby():
             "head": candidates[k]["head"],
             "answers": answers[category][k]
         }
-        lobby.append(candidate)
+        lobby["candidates"].append(candidate)
 
     return jsonify(lobby)
 
