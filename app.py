@@ -97,7 +97,7 @@ def get_lobby():
     lobbies = {"lobbies": {}}
     for category in ["gaming", "godot", "surprise"]:
         lobbies["lobbies"][category] = []
-        sampling = random.choices(list(answers[category]), k=4)
+        sampling = random.sample(list(answers[category]), k=4)
         for k in sampling:
             candidate = {
                 "name": k,
