@@ -1,44 +1,46 @@
 from flask import Flask, request
 from flask import jsonify
+import random
+
 app = Flask(__name__)
 
 candidates = {
     "Randy": {
         "body": "9",
-        "head": "7",
+        "head": "7"
         },
     "Larry": {
         "body": "2",
-        "head": "2",
+        "head": "2"
         },
     "Zoe": {
         "body": "7",
-        "head": "4",
+        "head": "4"
         },
     "Linda": {
         "body": "4",
-        "head": "10",
+        "head": "10"
         }
     }
 answers = {
         "gaming": {
-            "Randy": "3,2,1,2,1,2,1,2,1,2",
-            "Larry": "3,2,1,2,1,2,1,2,1,2",
-            "Zoe": "3,2,1,2,1,2,1,2,1,2",
-            "Linda": "3,2,1,2,1,2,1,2,1,2",
+            "Randy": [3,2,1,2,1,2,1,2,1,2],
+            "Larry": [3,2,1,2,1,2,1,2,1,2],
+            "Zoe": [3,2,1,2,1,2,1,2,1,2],
+            "Linda": [3,2,1,2,1,2,1,2,1,2]
         },
         "godot": {
-            "Randy": "3,2,1,2,1,2,1,2,1,2",
-            "Larry": "3,2,1,2,1,2,1,2,1,2",
-            "Zoe": "3,2,1,2,1,2,1,2,1,2",
-            "Linda": "3,2,1,2,1,2,1,2,1,2",
+            "Randy": [3,2,1,2,1,2,1,2,1,2],
+            "Larry": [3,2,1,2,1,2,1,2,1,2],
+            "Zoe": [3,2,1,2,1,2,1,2,1,2],
+            "Linda": [3,2,1,2,1,2,1,2,1,2]
 
         },
         "surprise": {
-            "Randy": "3,2,1,2,1,2,1,2,1,2",
-            "Larry": "3,2,1,2,1,2,1,2,1,2",
-            "Zoe": "3,2,1,2,1,2,1,2,1,2",
-            "Linda": "3,2,1,2,1,2,1,2,1,2",
+            "Randy": [3,2,1,2,1,2,1,2,1,2],
+            "Larry": [3,2,1,2,1,2,1,2,1,2],
+            "Zoe": [3,2,1,2,1,2,1,2,1,2],
+            "Linda": [3,2,1,2,1,2,1,2,1,2]
         }
     }
 
@@ -92,16 +94,12 @@ def get_candidates():
 
 @app.route("/get_lobby")
 def get_lobby():
-    p_set = get_player_set()
-    return jsonify(candidates)
+    category = request.args["category"]
+    sampling = random.choices(answers[category], k=4)
+    lobby = []
+
+    return jsonify(sampling)
 
 if __name__ == "__main__":
     app.run()
 
-
-def get_player_set():
-    p_set = []
-    for i in range(0,4):
-        string = "Somename,8,8;1,2,1,2,1,2,1,2,1,2"
-        p_set.append(string)
-    return p_set
