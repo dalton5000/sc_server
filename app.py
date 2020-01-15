@@ -92,21 +92,22 @@ def hello():
 def get_candidates():
     return jsonify(candidates)
 
-@app.route("/get_lobby")
+@app.route("/get_lobbies")
 def get_lobby():
-    category = request.args["category"]
-    sampling = random.choices(list(answers[category]), k=4)
-    lobby = {"candidates": []}
-    for k in sampling:
-        candidate = {
-            "name": k,
-            "body": candidates[k]["body"],
-            "head": candidates[k]["head"],
-            "answers": answers[category][k]
-        }
-        lobby["candidates"].append(candidate)
+    lobbies = {"lobbies": []}
+    for category in ["gaming", "godot", "surprise"]:
+        lobbies["lobbies"][category] = []
+        sampling = random.choices(list(answers[category]), k=4)
+        for k in sampling:
+            candidate = {
+                "name": k,
+                "body": candidates[k]["body"],
+                "head": candidates[k]["head"],
+                "answers": answers[category][k]
+            }
+            lobbies["lobbies"][category].append(candidate)
 
-    return jsonify(lobby)
+    return jsonify(lobbies)
 
 @app.route("/ping")
 def ping():
