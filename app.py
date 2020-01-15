@@ -2,40 +2,69 @@ from flask import Flask, request
 from flask import jsonify
 app = Flask(__name__)
 
-candidates = [
-    "Randy,9,7;1,2,1,2,1,2,1,2,1,2",
-    "Larry,2,2;1,2,1,2,1,2,1,2,1,2",
-    "Zoe,7,4;1,2,1,2,1,2,1,2,1,2",
-    "Linda,4,10;1,2,1,2,1,2,1,2,1,2",
-]
-candidates_base = [
-    "Randy,9,7;1,2,1,2,1,2,1,2,1,2",
-    "Larry,2,2;1,2,1,2,1,2,1,2,1,2",
-    "Zoe,7,4;12,1,2,1,2,1,2,1,2",
-    "Linda,4,10;1,2,1,2,1,2,1,2,1,2",
-]
+test = {}
+
+candidates = {
+    "Randy": {
+        "body": "9",
+        "head": "7",
+        "gaming": "3,2,1,2,1,2,1,2,1,2",
+        "godot": "3,2,1,2,1,2,1,2,1,2",
+        "surprise": "3,2,1,2,1,2,1,2,1,2",
+        },
+    "Larry": {
+        "body": "2",
+        "head": "2",
+        "gaming": "2,2,1,2,1,2,1,2,1,2",
+        "godot": "3,2,1,2,1,2,1,2,1,2",
+        "surprise": "3,2,1,2,1,2,1,2,1,2",
+        },
+    "Zoe": {
+        "body": "7",
+        "head": "4",
+        "gaming": "1,2,1,2,1,2,1,2,1,2",
+        "godot": "3,2,1,2,1,2,1,2,1,2",
+        "surprise": "3,2,1,2,1,2,1,2,1,2" }
+        ,
+    "Linda": {
+        "body": "4",
+        "head": "10",
+        "gaming": "2,2,1,2,1,2,1,2,1,2",
+        "godot": "3,2,1,2,1,2,1,2,1,2",
+        "surprise": "3,2,1,2,1,2,1,2,1,2",
+        },
+}
+
 
 @app.route("/reset")
 def reset():
     key = request.args['key']
     if key == "pls":
         global candidates
-        candidates = candidates_base
+        # candidates = candidates_base
         return("Reset OK")
     else:
         return("Fuck off")
-@app.route("/add_candidate")
-def add_candidate():
-    global candidates
-    data = request.args['data'].split("-")
-    if data[0] == "dlt5k":
-        candidate_string = data[1]
 
-        print("added " + candidate_string)
-        candidates.append(candidate_string)
-        return("Thank you")
-    else:
-        return("Fuck off")
+@app.route("/test")
+def testf():
+    return jsonify(test)
+
+@app.route("/add_answers", methods = ["GET", "POST",])
+def add_answers():
+    global test
+    test = request.json
+    global candidates
+    content = request.json
+    print(content)
+    # else:
+    #     return("Fuck off")
+
+@app.route("/is_unique")
+def is_unique():
+    global candidates
+    name_to_check = request.args['name']
+
 
 @app.route("/")
 def hello():
@@ -48,7 +77,7 @@ def get_candidates():
 @app.route("/get_lobby")
 def get_lobby():
     p_set = get_player_set()
-    return jsonify(candidates_base)
+    return jsonify(candidates)
 
 if __name__ == "__main__":
     app.run()
