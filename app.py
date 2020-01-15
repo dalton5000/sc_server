@@ -70,7 +70,7 @@ def add_answers():
                 }
 
         if not content["name"] in answers[content["category"]]:
-            answers[content["category"]] = content["answers"]
+            answers[content["category"]][content["name"]] = content["answers"]
 
         return("OK")
     else:
