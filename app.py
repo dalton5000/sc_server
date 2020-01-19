@@ -5,7 +5,7 @@ import random, json
 app = Flask(__name__)
 
 candidates = {
-    "Randy": {
+    "Linda": {
         "body": "9",
         "head": "7"
         },
@@ -17,7 +17,7 @@ candidates = {
         "body": "7",
         "head": "4"
         },
-    "Linda": {
+    "Randy": {
         "body": "4",
         "head": "10"
         }
@@ -107,6 +107,7 @@ def add_answers():
     global candidates
     content = request.json
     if content["key"] == "dlt5k":
+        if content["name"] == "Anonymous": return("No")
         if not content["name"] in candidates:
             candidates[content["name"]] = {
                 "body" : content["body"],
@@ -119,7 +120,7 @@ def add_answers():
         save_all()
         return("OK")
     else:
-        return("Fuck off")
+        return("No")
 
 @app.route("/is_unique")
 def is_unique():
@@ -130,7 +131,7 @@ def is_unique():
 
 @app.route("/")
 def hello():
-    return "Hello from Dalton!"
+    return "5000"
 
 @app.route("/get_answers")
 def get_answers():
@@ -161,11 +162,6 @@ def get_lobby():
 def ping():
     return "pong"
 
-def load_candidates_from_file():
-    with open('candidates.json') as json_file:
-        global candidates
-        candidates = json.load(json_file)
-
 @app.route("/save")
 def save_all():
     save_candidates()
@@ -180,5 +176,20 @@ def save_answers():
     with open('answers.json', 'w') as outfile:
         json.dump(answers, outfile)
 
+def load_all():
+    load_candidates()
+    load_answers()
+
+def load_candidates():
+    with open('candidates.json') as json_file:
+        global candidates
+        candidates = json.load(json_file)
+
+def load_answers():
+    with open('answers.json') as json_file:
+        global answers
+        answers = json.load(json_file)
+
 if __name__ == "__main__":
+    load_all()
     app.run()
