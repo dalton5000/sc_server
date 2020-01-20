@@ -7,19 +7,19 @@ app = Flask(__name__)
 candidates = {
     "Linda": {
         "head": "7",
-        "body": "9",
+        "body": "9"
         },
     "CarlFan2020": {
         "head": "9",
-        "body": "14",
+        "body": "14"
         },
     "BatgirlZoe": {
         "head": "4",
-        "body": "15",
+        "body": "15"
         },
     "JohnGabby": {
         "head": "2",
-        "body": "12",
+        "body": "12"
         }
     }
 
