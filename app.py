@@ -6,20 +6,20 @@ app = Flask(__name__)
 
 candidates = {
     "Linda": {
-        "body": "9",
         "head": "7"
+        "body": "9",
         },
     "CarlFan2020": {
-        "body": "9",
-        "head": "14"
+        "head": "9"
+        "body": "14",
         },
-    "Zoe": {
-        "body": "7",
+    "BatgirlZoe": {
         "head": "4"
+        "body": "15",
         },
     "JohnGabby": {
-        "body": "2",
-        "head": "13"
+        "head": "2"
+        "body": "12",
         }
     }
 
