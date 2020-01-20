@@ -102,11 +102,11 @@ def reset():
 def testf():
     return jsonify(answers)
 
-@app.route("/add_answers", methods = ["GET", "POST",])
+@app.route("/fghj", methods = ["GET", "POST",])
 def add_answers():
     global candidates
     content = request.json
-    if content["key"] == "dlt5k":
+    if content["key"] == "dlt52k":
         if content["name"] == "Anonymous": return("No")
         if not content["name"] in candidates:
             candidates[content["name"]] = {
