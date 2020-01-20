@@ -24,21 +24,21 @@ candidates = {
     }
 
 candidates_base = {
-    "JohnGabby": {
-        "body": "9",
-        "head": "7"
+    "Linda": {
+        "head": "7",
+        "body": "9"
         },
     "CarlFan2020": {
-        "body": "2",
-        "head": "2"
+        "head": "9",
+        "body": "14"
         },
-    "Zoe": {
-        "body": "7",
-        "head": "4"
+    "BatgirlZoe": {
+        "head": "4",
+        "body": "15"
         },
-    "Linda": {
-        "body": "4",
-        "head": "10"
+    "JohnGabby": {
+        "head": "2",
+        "body": "12"
         }
     }
 
@@ -63,7 +63,7 @@ answers = {
             "Linda": [2,0,1,3,1,3,2,0,1,3]
         }
     }
-answers_base = {
+answers_base ={
         "gaming": {
             "JohnGabby": [1,3,1,0,1,2,1,2,1,2],
             "CarlFan2020": [1,3,1,0,2,3,1,2,1,2],
