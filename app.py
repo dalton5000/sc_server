@@ -111,7 +111,7 @@ def add_answers():
         if not content["name"] in candidates:
             candidates[content["name"]] = {
                 "body" : content["body"],
-                "head" : content["body"],
+                "head" : content["head"],
                 content["category"] : content["answers"]
                 }
 
