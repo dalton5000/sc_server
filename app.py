@@ -105,6 +105,7 @@ def testf():
 @app.route("/fghj", methods = ["GET", "POST",])
 def add_answers():
     global candidates
+    global answers
     content = request.json
     if content["key"] == "dlt52k":
         if content["name"] == "Anonymous": return("No")
